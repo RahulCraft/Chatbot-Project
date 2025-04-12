@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+    <title>ChatBot Assistant</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="chat-container">
+        <h2>🤖 ChatBot Assistant</h2>
+        <div id="chat-box"></div>
+        <input type="text" id="user-input" placeholder="Type your message..." />
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        function sendMessage() {
+            const userMessage = document.getElementById("user-input").value;
+            const chatBox = document.getElementById("chat-box");
+
+            chatBox.innerHTML += `<p class='user'>You: ${userMessage}</p>`;
+            document.getElementById("user-input").value = "";
+
+            fetch("/chat/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: `message=${encodeURIComponent(userMessage)}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                chatBox.innerHTML += `<p class='bot'>Bot: ${data.reply}</p>`;
+            })
+            .catch(error => {
+                chatBox.innerHTML += `<p class='bot'>Error: ${error}</p>`;
+            });
+        }
+    </script>
+</body>
+</html>

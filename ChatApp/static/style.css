@@ -1,0 +1,37 @@
+body {
+    background: #f4f4f4;
+    font-family: Arial, sans-serif;
+}
+
+.chat-container {
+    width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+#chat-box {
+    height: 300px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.user { color: blue; }
+.bot { color: green; }
+
+input[type="text"] {
+    width: 80%;
+    padding: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    background: dodgerblue;
+    color: white;
+    border: none;
+    border-radius: 8px;
+}
